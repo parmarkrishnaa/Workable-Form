@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./image.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <form autocomplete="off" method="post" name="google-sheet">
+            <h3>Survey Form</h3>
+            <label for="name">First Name: <span>*</span> </label>
+            <input type="text" name="First_Name" placeholder="Type Here...." required>
+            <label for="name">Last Name: <span>*</span> </label>
+            <input type="text" name="Last_Name" placeholder="Type Here...." required>
+            <label for="name">Father's Name: <span>*</span> </label>
+            <input type="text" name="Fathers_Name" placeholder="Type Here...." required>
+            <label for="name">Mother's Name: <span>*</span> </label>
+            <input type="text" name="Mothers_Name" placeholder="Type Here...." required>
+            <label for="phone">Phone Number: <span>*</span> </label>
+            <input type="text" name="Phone_Number" placeholder="Type Here...." required>
+            <label for="email">Email: <span>*</span> </label>
+            <input type="email" name="Email" placeholder="Type Here...." required>
+            <label for="dob">Date Of Birth: <span>*</span> </label>
+            <input type="date" name="Date_Of_Birth" value="" placeholder="Type Here...." required>
+            <label for="school">School: <span>*</span> </label>
+            <input type="text" name="School" placeholder="Type Here...." required>
+
+            <label for="">Degree: <span>*</span> </label>
+            <select name="Degree" required>
+                <option value="Not selected">Select an option</option>
+                <option value="BCA">BCA</option>
+                <option value="BSC IT">BSC IT</option>
+                <option value="BTech Cs">BTech Cs</option>
+                <option value="BSC CS">BSC CS</option>
+            </select>
+
+            <label for="address">Address: <span>*</span> </label>
+            <textarea rows="4" placeholder="Type Here...." name="Address" required></textarea>
+
+            <label for="pincode">Pincode: <span>*</span> </label>
+            <input type="text" name="Pincode" placeholder="Type Here...." required>
+
+            <div class="btn">
+                <button class="reset" type="reset">Reset</button>
+                <button class="submit" type="submit" name="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyTDPy37AwnbViMGJdG3k4ElTBl0zXSXHK3ASHdCVqfZu4flda51UHqzFvMGYfIVxCQ/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+</body>
+
+</html>
